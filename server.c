@@ -61,7 +61,8 @@ int main() {
 			break;
 		}
 		if (strcmp(request, "bye\n") == 0) {
-			printf("closing connection from %s\n");
+			printf("closing connection from %s\n",
+					inet_ntoa(client.sin_addr));
 			continue;
 		}	
 		
@@ -69,9 +70,9 @@ int main() {
 		/* if 0, then we're inside a child process, else we're in the
 		 * parent process */
 		if (pid == 0) {
-			printf("request: %s\n", request);
-			/* this is to get more requests, and to execute them
-			 * faster */
+			printf("%s> %s", inet_ntoa(client.sin_addr), request);
+			/* gather more requests in these 2 seconds in the main
+			 * process */
 			sleep(2);
 			
 			/* send the request as a response to the client */

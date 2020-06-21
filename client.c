@@ -30,6 +30,7 @@ int main() {
 
 	while (1) {
 		/* what to send? */
+		printf("> ");
 		fgets(request, 256, stdin);
 		bytes = sendto(sock, &request, sizeof(request), 0, 
 				(struct sockaddr *)&server, socklen);
@@ -49,7 +50,7 @@ int main() {
 			break;
 		} 
 		else {
-			printf("response: %s\n", response);
+			printf("server>: %s", response);
 		}
 	}
 	shutdown(sock, SHUT_RDWR);	
