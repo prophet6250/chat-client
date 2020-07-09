@@ -1,10 +1,10 @@
 CC = gcc
 
-server.exe: server.c client.exe
-	$(CC) server.c -o server.exe
+server: server.c client
+	$(CC) server.c -o server
 
-client.exe: client.c
-	$(CC) client.c -o client.exe
+client: client.c
+	$(CC) client.c -o client
 
 clean:
-	rm *.exe
+	rm client server
