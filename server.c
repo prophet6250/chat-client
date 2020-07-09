@@ -65,7 +65,7 @@ int main()
 		if (pid == 0) {
 			/* sock will only be used to listen for connections,
 			 * altsock will be used for data transfer */
-			close(sock);
+			shutdown(sock, SHUT_RDWR);
 
 			/* buf was recieved as a char* from client side.
 			 * check client side code for more details */
@@ -111,7 +111,7 @@ int main()
 
 				if (bytes < 0) {
 					printf("error in sending response\n");
-					close(altsock);
+					shutdown(altsock, SHUT_RDWR);
 					return bytes;
 				}
 
